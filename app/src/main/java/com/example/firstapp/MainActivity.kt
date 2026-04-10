@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun demo(){
+fun Demo(){
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Color.Green),
@@ -57,6 +57,6 @@ fun demo(){
 
 @Preview(showBackground = true)
 @Composable
-fun demopreview(){
-    demo()
+fun Demopreview(){
+    Demo()
 }

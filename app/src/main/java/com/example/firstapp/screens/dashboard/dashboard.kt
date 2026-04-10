@@ -33,11 +33,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Dashboard(){
+fun Dashboard(navController: NavHostController){
     Scaffold(
         //top bar
         topBar = {
@@ -119,5 +122,5 @@ fun Dashboard(){
 @Preview(showBackground = true)
 @Composable
 fun Dashboardpreview(){
-    Dashboard()
+    Dashboard(rememberNavController())
 }

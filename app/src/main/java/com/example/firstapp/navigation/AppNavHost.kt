@@ -1,6 +1,7 @@
 package com.example.firstapp.navigation
 
 import android.graphics.pdf.content.PdfPageGotoLinkContent
+import android.window.SplashScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -8,8 +9,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.firstapp.screens.dashboard.Dashboard
 import com.example.firstapp.screens.login.LoginScreen
+import com.example.firstapp.screens.products.AddProduct
 import com.example.firstapp.screens.register.RegisterScreen
+import com.example.firstapp.screens.splashscreen.SplashScreen
 
 
 //main function called when opening the app
@@ -17,7 +21,7 @@ import com.example.firstapp.screens.register.RegisterScreen
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(), //NavHostController= rememberNavController()
-    startDestination: String=ROUTE_LOGIN
+    startDestination: String=ROUTE_SPLASH
 ){
     NavHost(
         navController=navController,
@@ -30,7 +34,17 @@ fun AppNavHost(
         composable(ROUTE_REGISTER){
             RegisterScreen(navController)
         }
+        composable (ROUTE_SPLASH){
+            SplashScreen(navController)
+        }
+        composable (ROUTE_DASHBOARD){
+            Dashboard(navController)
+        }
+        composable (ROUTE_ADDPRODUCT) {
+            AddProduct(navController)
+        }
     }
 }
+
 
 

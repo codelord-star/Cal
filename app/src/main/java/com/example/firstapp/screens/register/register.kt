@@ -27,6 +27,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,8 +35,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.firstapp.data.AuthViewModel
 import com.example.firstapp.navigation.ROUTE_LOGIN
-import com.example.firstapp.navigation.ROUTE_REGISTER
+
 
 @Composable
 fun RegisterScreen(navController: NavHostController){
@@ -53,7 +55,7 @@ fun RegisterScreen(navController: NavHostController){
         var fullname by  remember { mutableStateOf("") }
         var email by remember { mutableStateOf("") }
         var password by remember { mutableStateOf("") }
-        var confirm_password by remember { mutableStateOf("") }
+        var confirmpass by remember { mutableStateOf("") }
 
         OutlinedTextField(
             value = fullname,
@@ -96,8 +98,8 @@ fun RegisterScreen(navController: NavHostController){
             visualTransformation = PasswordVisualTransformation(),
         )
         OutlinedTextField(
-            value = confirm_password,
-            onValueChange={confirm_password=it},
+            value = confirmpass,
+            onValueChange={confirmpass=it},
             label={Text("Confirm password")},
             leadingIcon = {
                 Icon(
@@ -110,11 +112,14 @@ fun RegisterScreen(navController: NavHostController){
             visualTransformation = PasswordVisualTransformation(),
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = {},
+        val context= LocalContext.current
+        val myauth= AuthViewModel(navController,context)
+        Button(
+            onClick = {myauth.signup(fullname,email,password,confirmpass)},
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Blue,
-                contentColor = Color.White            )
+                contentColor = Color.White)
         ) {
             Text("Register",
                 fontSize = 24.sp,
