@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.firstapp.R
+import com.example.firstapp.data.AuthViewModel
 import com.example.firstapp.navigation.ROUTE_REGISTER
 import java.nio.file.WatchEvent
 
@@ -109,7 +111,10 @@ fun LoginScreen(navController: NavHostController){
             visualTransformation = PasswordVisualTransformation(),
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = {},
+        val context= LocalContext.current
+        val myauth= AuthViewModel(navController,context)
+        Button(
+            onClick = {myauth.signin(email,password)},
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Blue,
