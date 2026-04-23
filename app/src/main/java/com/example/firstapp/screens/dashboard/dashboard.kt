@@ -49,6 +49,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.firstapp.data.AuthViewModel
 import com.example.firstapp.navigation.ROUTE_ADDPRODUCT
 import com.example.firstapp.navigation.ROUTE_LISTPRODUCTS
+import com.example.firstapp.navigation.ROUTE_PROFILE
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -93,7 +94,7 @@ fun Dashboard(navController: NavHostController){
                 )
                 NavigationBarItem(
                     selected = false,
-                    onClick = {},
+                    onClick = {navController.navigate(ROUTE_PROFILE)},
                     icon = { Icon(Icons.Default.Person,
                         contentDescription = "person icon") },
                     label = { Text("PROFILE ",
@@ -117,8 +118,6 @@ fun Dashboard(navController: NavHostController){
                 .fillMaxSize()
                 .background(Color.White),
         ) {
-            Text("Welcome to my app")
-
             //User info
             var username by remember { mutableStateOf("Loading") }
             LaunchedEffect(Unit) {
@@ -144,18 +143,25 @@ fun Dashboard(navController: NavHostController){
             ) {
                 Column(modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,) {
-                    Text("HELLO")
-                    Icon(
-                        Icons.Default.Person,
-                        contentDescription = "person icon",
-
-                    )
+                    Text("ADD PRODUCT")
                 }
             }
-            Button(onClick = {
-                navController.navigate(ROUTE_LISTPRODUCTS)
-            }) {
-                Text("PRODUCT LIST")
+            Card(modifier = Modifier
+                .width(200.dp)
+                .padding(16.dp)
+                .height(150.dp)
+                .clickable{navController.navigate(ROUTE_LISTPRODUCTS)},
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.DarkGray,
+                    contentColor = Color.Black,
+                )
+            ) {
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,) {
+                    Text("PRODUCT LIST")
+                }
             }
         }
     }
