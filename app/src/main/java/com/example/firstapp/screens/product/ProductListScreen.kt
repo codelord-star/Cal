@@ -1,5 +1,8 @@
 package com.example.firstapp.screens.product
 
+import android.R
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -7,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,6 +36,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.firstapp.data.ProductViewModel
 import com.example.firstapp.models.Product
+import com.example.firstapp.navigation.ROUTE_UPDATEPRODUCT
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -68,23 +74,46 @@ fun ProductListScreen(navController: NavHostController) {
                 ) {
                     //image preview
                     AsyncImage(
-                        model = productItem.imageUri,
+                        model = productItem.imageUrl,
                         contentDescription = "product",
-                        contentScale = ContentScale.Crop,
+                        contentScale = ContentScale.Fit,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(100.dp)
                     )
                     Text(
-                        text = productItem.nmae,
+                        text = productItem.name,
                         fontSize = 18.sp
                     )
                     Text(
-                        text = "PRICE :KSH.${productItem.price}"
+                        text = "PRICE :KSH.${productItem.price}",
+                        color = Color.Red,
                     )
                     Text(
                         text = productItem.desc
                     )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                    ) {
+                        Button(
+                            onClick = {navController.navigate("$ROUTE_UPDATEPRODUCT/${productItem.id}")},
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Green
+                            )
+                        ) {
+                            Text("Update")
+                        }
+                        Button(
+                            onClick = {myprocuctviewmodel.deleteProduct(productItem.id)},
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.Red
+                            )
+                        ) {
+                            Text("Delete")
+                        }
+                    }
                 }
             }
         }
