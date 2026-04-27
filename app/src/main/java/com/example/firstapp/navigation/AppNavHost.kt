@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.firstapp.screens.dashboard.Dashboard
+import com.example.firstapp.screens.dashboard.UserDashboard
+import com.example.firstapp.screens.demo.Democarousel
 import com.example.firstapp.screens.login.LoginScreen
 import com.example.firstapp.screens.product.AddProduct
 import com.example.firstapp.screens.product.ProductListScreen
@@ -40,6 +42,9 @@ fun AppNavHost(
         composable (ROUTE_DASHBOARD){
             Dashboard(navController)
         }
+        composable (ROUTE_USERDASHBOARD){
+            UserDashboard(navController)
+        }
         composable (ROUTE_ADDPRODUCT) {
             AddProduct(navController)
         }
@@ -52,6 +57,9 @@ fun AppNavHost(
         }
         composable (ROUTE_PROFILE){
             ProfileScreen(navController)
+        }
+        composable (ROUTE_DEMOCAROUSEL){
+            Democarousel(navController)
         }
     }
 }

@@ -48,8 +48,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.firstapp.data.AuthViewModel
 import com.example.firstapp.navigation.ROUTE_ADDPRODUCT
+import com.example.firstapp.navigation.ROUTE_DEMOCAROUSEL
 import com.example.firstapp.navigation.ROUTE_LISTPRODUCTS
 import com.example.firstapp.navigation.ROUTE_PROFILE
+import com.example.firstapp.navigation.ROUTE_USERDASHBOARD
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -161,6 +163,40 @@ fun Dashboard(navController: NavHostController){
                 Column(modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,) {
                     Text("PRODUCT LIST")
+                }
+            }
+            Card(modifier = Modifier
+                .width(200.dp)
+                .padding(16.dp)
+                .height(150.dp)
+                .clickable{navController.navigate(ROUTE_DEMOCAROUSEL)},
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.DarkGray,
+                    contentColor = Color.Black,
+                )
+            ) {
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,) {
+                    Text("CAROUSEL")
+                }
+            }
+            Card(modifier = Modifier
+                .width(200.dp)
+                .padding(16.dp)
+                .height(150.dp)
+                .clickable{navController.navigate(ROUTE_USERDASHBOARD)},
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(8.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.DarkGray,
+                    contentColor = Color.Black,
+                )
+            ) {
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,) {
+                    Text("USER DASHBOARD")
                 }
             }
         }
