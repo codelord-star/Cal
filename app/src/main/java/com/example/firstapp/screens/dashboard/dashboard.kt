@@ -165,23 +165,7 @@ fun Dashboard(navController: NavHostController){
                     Text("PRODUCT LIST")
                 }
             }
-            Card(modifier = Modifier
-                .width(200.dp)
-                .padding(16.dp)
-                .height(150.dp)
-                .clickable{navController.navigate(ROUTE_DEMOCAROUSEL)},
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(8.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.DarkGray,
-                    contentColor = Color.Black,
-                )
-            ) {
-                Column(modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,) {
-                    Text("CAROUSEL")
-                }
-            }
+
             Card(modifier = Modifier
                 .width(200.dp)
                 .padding(16.dp)

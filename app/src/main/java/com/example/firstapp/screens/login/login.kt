@@ -83,7 +83,7 @@ fun LoginScreen(navController: NavHostController){
         OutlinedTextField(
             value = email,
             onValueChange={email=it},
-            label={Text("mail address")},
+            label={Text("email address")},
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Email,
